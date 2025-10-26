@@ -15,7 +15,7 @@ mua – bán – trao đổi **pin điện và phương tiện EV** (xe điện,
 
 Nền tảng cung cấp:
 
-* 🧟 Quản lý tài khoản người dùng, phân quyền admin
+* 👤 Quản lý tài khoản người dùng, phân quyền admin
 * 💾 Đăng tin, duyệt bài, đánh giá & log lịch sử duyệt
 * 🔋 Quản lý pin & phương tiện điện (Car, Bike, Battery)
 * 💰 Tích hợp **PayOS** cho thanh toán và nạp ví
