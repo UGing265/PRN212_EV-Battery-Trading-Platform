@@ -52,7 +52,7 @@ namespace EVBattery.UI.WPF.ViewModels
             // Nếu có email thì kiểm tra định dạng
             if (!string.IsNullOrWhiteSpace(Email) && !Email.Contains("@"))
             {
-                ErrorMessage = "Email không hợp lệ.";
+                ErrorMessage = "Email không hợp lệ.";a
                 return;
             }
 
