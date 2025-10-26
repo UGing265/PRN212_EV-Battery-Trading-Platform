@@ -31,7 +31,7 @@ Solution 'EVBattery'
 ├── EVBattery.Core/              # Model, DTO, Enum dùng chung
 ├── EVBattery.Infrastructure/    # Services, API Client, Config
 ├── EVBattery.UI.WPF/            # Giao diện WPF (MVVM pattern)
-└── Backend (NestJS API)/        # API server chạy tại https://kali.mshiroru.site/api
+└── Backend (NestJS API)/        # API server chạy tại https://kali.mshiroru.site/
 ```
 
 ---
@@ -79,24 +79,6 @@ Solution 'EVBattery'
 
 ---
 
-### ⚙️ **Backend API (NestJS)**
-
-#### 📦 Cài đặt
-
-```bash
-cd apps/api
-npm install
-npm run start:dev
-```
-
-API sẽ chạy ở:
-
-```
-http://localhost:3000/api
-```
-
----
-
 ## 💡 5️⃣ CI/CD (GitHub Actions)
 
 Mỗi khi **push** hoặc **mở pull request**, hệ thống tự động:
@@ -107,71 +89,6 @@ Mỗi khi **push** hoặc **mở pull request**, hệ thống tự động:
 
 Cấu hình nằm tại:
 `.github/workflows/ci.yml`
-
----
-
-## 🧩 6️⃣ Cấu trúc thư mục chính
-
-```bash
-EVBattery/
-│
-├── EVBattery.Core/
-│   └── Models/
-│       ├── Account.cs
-│       ├── RegisterDto.cs
-│       └── LoginResponse.cs
-│
-├── EVBattery.Infrastructure/
-│   ├── Http/ApiClient.cs
-│   └── Services/
-│       ├── AuthService.cs
-│       ├── AccountService.cs
-│       └── PostService.cs
-│
-├── EVBattery.UI.WPF/
-│   ├── Views/
-│   │   ├── LoginWindow.xaml
-│   │   ├── RegisterWindow.xaml
-│   │   └── MainWindow.xaml
-│   ├── ViewModels/
-│   │   ├── LoginViewModel.cs
-│   │   ├── RegisterViewModel.cs
-│   │   └── MainViewModel.cs
-│   ├── Commands/RelayCommand.cs
-│   └── App.xaml / App.xaml.cs
-│
-└── Backend/
-    ├── src/modules/
-    │   ├── auth/
-    │   ├── accounts/
-    │   ├── wallets/
-    │   └── posts/
-    └── main.ts
-```
-
----
-
-## 🧬 7️⃣ Hướng dẫn debug nhanh
-
-| Tình huống              | Cách xử lý                                      |
-| ----------------------- | ----------------------------------------------- |
-| API báo 400             | Gửi sai field (`identifier`, `password`)        |
-| API báo 401             | Sai thông tin hoặc token hết hạn                |
-| Không thấy ErrorMessage | Thiếu `OnPropertyChanged()`                     |
-| Password luôn trống     | Thêm `PasswordChanged` event cho `PasswordBox`  |
-| App không chạy          | Kiểm tra `Startup Project` = `EVBattery.UI.WPF` |
-
----
-
-## 👥 8️⃣ Team Development
-
-| Thành viên             | Vai trò                    | Ghi chú                            |
-| ---------------------- | -------------------------- | ---------------------------------- |
-| 🧑‍💻 **Neko GAY**     | Team Leader, Fullstack Dev | Kiến trúc hệ thống, API, CI/CD     |
-| 🧑‍💻 **[Tên bạn #2]** | Backend Dev                | NestJS modules, PayOS integration  |
-| 🧑‍🎨 **[Tên bạn #3]** | UI/UX Designer             | WPF layout, XAML MVVM binding      |
-| 🧑‍🔬 **[Tên bạn #4]** | QA / Tester                | Test flow Login, Register, PayOS   |
-| 🧑‍� **[Tên bạn #5]**  | Documenter                 | README, diagrams, ERD, demo slides |
 
 ---
 
@@ -188,4 +105,3 @@ MIT License © 2025 EVBattery Team
 * Mọi API chạy qua endpoint thật:
   **[https://kali.mshiroru.site/api/](https://kali.mshiroru.site/api/)**
 * Nếu test local: thay `BaseAddress` trong `ApiClient.cs`
-* Các file build `.exe` có thể tải trong tab **Actions → Artifacts** (nếu CI/CD bật)
