@@ -15,6 +15,9 @@
       "EVBattery.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "EVBattery.Core": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/EVBattery.Infrastructure.dll": {}
         },

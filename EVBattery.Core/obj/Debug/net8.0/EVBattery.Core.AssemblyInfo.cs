@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EVBattery.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fbfe24d01225602706b03a0c1dfaa93998562f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("EVBattery.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EVBattery.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
