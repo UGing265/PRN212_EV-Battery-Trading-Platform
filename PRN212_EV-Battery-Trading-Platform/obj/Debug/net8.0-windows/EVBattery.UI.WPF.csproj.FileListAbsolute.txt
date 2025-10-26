@@ -28,3 +28,5 @@ D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platfor
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\obj\Debug\net8.0-windows\EVBattery.UI.WPF.pdb
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\obj\Debug\net8.0-windows\EVBattery.UI.WPF.genruntimeconfig.cache
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\obj\Debug\net8.0-windows\ref\EVBattery.UI.WPF.dll
+D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\obj\Debug\net8.0-windows\Windows\RegisterWindow.g.cs
+D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\obj\Debug\net8.0-windows\Windows\RegisterWindow.baml
