@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EVBattery.Core.Models.Accounts
+namespace EVBattery.Core.Models.Auth
 {
     public class RegisterDto
     {

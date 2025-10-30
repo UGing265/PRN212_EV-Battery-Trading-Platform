@@ -1,11 +1,11 @@
+D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\bin\Debug\net8.0\EVBattery.Core.deps.json
+D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\bin\Debug\net8.0\EVBattery.Core.dll
+D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\bin\Debug\net8.0\EVBattery.Core.pdb
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\obj\Debug\net8.0\EVBattery.Core.GeneratedMSBuildEditorConfig.editorconfig
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\obj\Debug\net8.0\EVBattery.Core.AssemblyInfoInputs.cache
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\obj\Debug\net8.0\EVBattery.Core.AssemblyInfo.cs
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\obj\Debug\net8.0\EVBattery.Core.csproj.CoreCompileInputs.cache
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\obj\Debug\net8.0\EVBattery.Core.sourcelink.json
-D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\bin\Debug\net8.0\EVBattery.Core.deps.json
-D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\bin\Debug\net8.0\EVBattery.Core.dll
-D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\bin\Debug\net8.0\EVBattery.Core.pdb
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\obj\Debug\net8.0\EVBattery.Core.dll
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\obj\Debug\net8.0\refint\EVBattery.Core.dll
 D:\AShiroru\LessonFPT\semester 5\PRN212\lesson\PRN212_EV-Battery-Trading-Platform\PRN212_EV-Battery-Trading-Platform\EVBattery.Core\obj\Debug\net8.0\EVBattery.Core.pdb
