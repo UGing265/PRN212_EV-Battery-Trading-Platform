@@ -1,28 +1,60 @@
-﻿using EVBattery.Core.Models;
-using EVBattery.Core.Models.Accounts;
-using EVBattery.Infrastructure.Services;
-using EVBattery.UI.WPF.commands;
-using System;
+﻿using EVBattery.Core.Helpers;
+using EVBattery.Core.Models.Auth;
+using EVBattery.UI.WPF.Commands;
+using EVBattery.UI.WPF.Windows;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace EVBattery.UI.WPF.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
-        private readonly AccountService _accountService = new();
+        private string _fullName = string.Empty;
+        public string FullName
+        {
+            get => _fullName;
+            set
+            {
+                if (SetProperty(ref _fullName, value))
+                    ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
+            }
+        }
 
-        private string _email;
-        public string Email { get => _email; set => SetProperty(ref _email, value); }
+        private string _email = string.Empty;
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                if (SetProperty(ref _email, value))
+                    ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
+            }
+        }
 
-        private string _password;
-        public string Password { get => _password; set => SetProperty(ref _password, value); }
+        private string _phone = string.Empty;
+        public string Phone
+        {
+            get => _phone;
+            set
+            {
+                if (SetProperty(ref _phone, value))
+                    ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
+            }
+        }
 
-        private string _fullName;
-        public string FullName { get => _fullName; set => SetProperty(ref _fullName, value); }
-        private string _phone;
-        public string Phone { get => _phone; set => SetProperty(ref _phone, value); }
+        private string _password = string.Empty;
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                if (SetProperty(ref _password, value))
+                    ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
+            }
+        }
 
         private string _errorMessage = string.Empty;
         public string ErrorMessage
@@ -35,62 +67,120 @@ namespace EVBattery.UI.WPF.ViewModels
 
         public RegisterViewModel()
         {
-            RegisterCommand = new RelayCommand(async _ => await RegisterAsync());
+            RegisterCommand = new RelayCommand(async () => await RegisterAsync(), () => true);
         }
 
         private async Task RegisterAsync()
         {
-            ErrorMessage = string.Empty;
+            // Validation cơ bản
+            if (string.IsNullOrWhiteSpace(FullName))
+            {
+                ErrorMessage = "Vui lòng nhập họ tên.";
+                return;
+            }
 
-            // ✅ Yêu cầu ít nhất 1 trong 2: Email hoặc Phone
             if (string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Phone))
             {
-                ErrorMessage = "Vui lòng nhập ít nhất Email hoặc Số điện thoại.";
+                ErrorMessage = "Vui lòng nhập Email hoặc Số điện thoại.";
                 return;
             }
 
-            // Nếu có email thì kiểm tra định dạng
-            if (!string.IsNullOrWhiteSpace(Email) && !Email.Contains("@"))
+            if (!string.IsNullOrWhiteSpace(Phone))
             {
-                ErrorMessage = "Email không hợp lệ.";
+                var phoneRegex = new Regex(@"^(?:\+84|0)(?:3[2-9]|5[2689]|7[06789]|8[1-9]|9[0-9])[0-9]{7}$");
+                if (!phoneRegex.IsMatch(Phone))
+                {
+                    ErrorMessage = "Số điện thoại không hợp lệ (vd: 0912345678 hoặc +84912345678).";
+                    return;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                ErrorMessage = "Vui lòng nhập mật khẩu.";
                 return;
             }
 
-            // Mật khẩu là bắt buộc
-            if (string.IsNullOrWhiteSpace(Password) || Password.Length < 6)
+            if (Password.Length < 6)
             {
                 ErrorMessage = "Mật khẩu phải có ít nhất 6 ký tự.";
                 return;
             }
 
+            ErrorMessage = string.Empty;
+
+            var dto = new RegisterDto
+            {
+                FullName = FullName,
+                Email = string.IsNullOrWhiteSpace(Email) ? null : Email,
+                Phone = string.IsNullOrWhiteSpace(Phone) ? null : Phone,
+                Password = Password
+            };
+
             try
             {
-                var dto = new RegisterDto
+                var response = await ApiHelper.PostAsync<RegisterResponse>("accounts/", dto);
+
+                // ⚡ Nếu server trả null → kiểm tra có lỗi Conflict trong log hay không
+                if (response == null)
                 {
-                    Email = string.IsNullOrWhiteSpace(Email) ? null : Email.Trim(),
-                    Password = Password,
-                    FullName = string.IsNullOrWhiteSpace(FullName) ? "User" : FullName.Trim(),
-                    Phone = string.IsNullOrWhiteSpace(Phone) ? null : Phone.Trim()
-                };
-
-                System.Diagnostics.Debug.WriteLine("[Register Payload] " +
-                    System.Text.Json.JsonSerializer.Serialize(dto));
-
-                var result = await _accountService.RegisterAsync(dto);
-
-                if (result != null)
-                {
-                    MessageBox.Show("Đăng ký thành công! Hãy đăng nhập lại.", "Thành công");
+                    // Backend thường trả message "already registered" khi trùng
+                    ErrorMessage = Phone switch
+                    {
+                        not null when !string.IsNullOrWhiteSpace(Phone) => "Số điện thoại đã được đăng ký!",
+                        _ => "Email đã được đăng ký!"
+                    };
+                    return;
                 }
-                else
+
+                if (!response.Success)
                 {
-                    ErrorMessage = "Đăng ký thất bại. Kiểm tra lại thông tin hoặc thử lại sau.";
+                    // Nếu backend có message cụ thể thì hiển thị nó
+                    if (!string.IsNullOrWhiteSpace(response.Message))
+                    {
+                        if (response.Message.Contains("already", StringComparison.OrdinalIgnoreCase))
+                        {
+                            ErrorMessage = "Tài khoản đã tồn tại, vui lòng đăng nhập.";
+                            return;
+                        }
+
+                        ErrorMessage = response.Message;
+                        return;
+                    }
+
+                    ErrorMessage = "Đăng ký thất bại!";
+                    return;
+                }
+
+                // ✅ Thành công
+                MessageBox.Show($"🎉 Đăng ký thành công!\nXin chào {response.Account?.FullName ?? "User"}",
+                                "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                var loginWindow = new LoginWindow();
+                loginWindow.Show();
+
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is RegisterWindow)
+                    {
+                        window.Close();
+                        break;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[Register Exception] {ex}");
-                ErrorMessage = "Lỗi khi gọi API: " + ex.Message;
+                // Nếu lỗi HTTP 409 vẫn lọt xuống đây (do ApiHelper nuốt lỗi)
+                if (ex.Message.Contains("409") || ex.Message.Contains("Conflict"))
+                {
+                    ErrorMessage = "Tài khoản đã tồn tại, vui lòng đăng nhập.";
+                }
+                else
+                {
+                    ErrorMessage = "Không thể kết nối tới server.";
+                }
+
+                Debug.WriteLine($"[REGISTER EXCEPTION] {ex.Message}");
             }
         }
     }
