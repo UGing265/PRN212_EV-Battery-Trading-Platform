@@ -1,0 +1,18 @@
+  name: CodeRabbit AI Review
+
+on:
+  pull_request:
+    branches:
+      - "**"   # mọi nhánh
+
+jobs:
+  coderabbit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run CodeRabbit AI Review
+        uses: coderabbitai/ai-code-review-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          coderabbit_token: ${{ secrets.CODERABBIT_TOKEN }}
