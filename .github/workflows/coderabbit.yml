@@ -1,9 +1,9 @@
-  name: CodeRabbit AI Review
+name: CodeRabbit AI Review
 
 on:
   pull_request:
     branches:
-      - "**"   # mọi nhánh
+      - "**" # mọi nhánh
 
 jobs:
   coderabbit:
