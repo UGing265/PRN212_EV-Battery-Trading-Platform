@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EVBattery.UI.WPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+243ddb92ac133e7513f86caed4eba52b85a74b09")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a21a398ae5d70d464cd7076f01ee4d470fee9eb")]
 [assembly: System.Reflection.AssemblyProductAttribute("EVBattery.UI.WPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EVBattery.UI.WPF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
