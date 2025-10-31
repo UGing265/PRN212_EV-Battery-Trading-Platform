@@ -1,5 +1,0 @@
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=DESKTOP-0K0HKUG\\SQLEXPRESS; database=EVBatterySwapDB; uid=sa; pwd=12345; TrustServerCertificate=True;"
-  }
-}
