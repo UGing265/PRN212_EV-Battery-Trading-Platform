@@ -1,9 +1,7 @@
-﻿using EVBattery.Infrastructure.Services;
-using EVBattery.UI.WPF.commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using EVBattery.Core.Helpers;
+using EVBattery.Core.Models.Auth;
+using EVBattery.UI.WPF.Commands;
+using EVBattery.UI.WPF.Windows;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -12,31 +10,21 @@ namespace EVBattery.UI.WPF.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        private readonly AuthService _authService = new();
-
-        private string _emailOrPhone;
-        private string _password;
-        private bool _isLoading;
-        private string _errorMessage;
-
-        public string EmailOrPhone
+        private string _identifier = string.Empty;
+        public string Identifier
         {
-            get => _emailOrPhone;
-            set => SetProperty(ref _emailOrPhone, value);
+            get => _identifier;
+            set => SetProperty(ref _identifier, value);
         }
 
+        private string _password = string.Empty;
         public string Password
         {
             get => _password;
             set => SetProperty(ref _password, value);
         }
 
-        public bool IsLoading
-        {
-            get => _isLoading;
-            set => SetProperty(ref _isLoading, value);
-        }
-
+        private string _errorMessage = string.Empty;
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -47,52 +35,60 @@ namespace EVBattery.UI.WPF.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new RelayCommand(async _ => await LoginAsync(), _ => !IsLoading);
+            LoginCommand = new RelayCommand(async () => await LoginAsync(), () => true);
         }
 
         private async Task LoginAsync()
         {
+            // 🧩 Validation cơ bản
+            if (string.IsNullOrWhiteSpace(Identifier))
+            {
+                ErrorMessage = "Vui lòng nhập Email hoặc Số điện thoại.";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                ErrorMessage = "Vui lòng nhập mật khẩu.";
+                return;
+            }
+
             ErrorMessage = string.Empty;
-            IsLoading = true;
 
-            try
+            var dto = new LoginDto
             {
-                var result = await _authService.LoginAsync(EmailOrPhone, Password);
-                Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(result));
+                Identifier = Identifier,
+                Password = Password
+            };
 
-                MessageBox.Show($"🟢 API trả về: {(result == null ? "null" : "OK")}", "Debug");
+            var response = await ApiHelper.PostAsync<LoginResponse>("auth/login", dto);
 
-                if (result != null)
-                {
-                    MessageBox.Show($"Xin chào {result.Account.FullName}!\nToken: {result.AccessToken}",
-                                "Đăng nhập thành công", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    var mainWindow = new EVBattery.UI.WPF.Windows.MainWindow();
-                    mainWindow.Show();
-
-                    // Chỉ đóng LoginWindow
-                    foreach (Window window in Application.Current.Windows)
-                    {
-                        if (window is EVBattery.UI.WPF.Windows.LoginWindow)
-                        {
-                            window.Close();
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    ErrorMessage = "Sai tài khoản hoặc mật khẩu.";
-                }
+            if (response == null || string.IsNullOrEmpty(response.AccessToken))
+            {
+                ErrorMessage = "Sai thông tin đăng nhập!";
+                return;
             }
-            catch (Exception ex)
+
+            // ✅ Hiển thị tên người dùng
+            string userName = response.Account?.FullName ?? "Người dùng";
+            MessageBox.Show($"🎉 Xin chào, {userName}!", "Đăng nhập thành công",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+
+            // ✅ Mở MainWindow, truyền dữ liệu người dùng
+            var mainWindow = new MainWindow
             {
-                System.Diagnostics.Debug.WriteLine($"[LoginAsync] Exception: {ex}");
-                ErrorMessage = "Lỗi đăng nhập: " + ex.Message;
-            }
-            finally
+                DataContext = new MainViewModel(response.Account, response.AccessToken)
+            };
+            mainWindow.Show();
+
+            // Đóng cửa sổ Login
+            foreach (Window window in Application.Current.Windows)
             {
-                IsLoading = false;
+                if (window is LoginWindow)
+                {
+                    window.Close();
+                    break;
+                }
             }
         }
     }

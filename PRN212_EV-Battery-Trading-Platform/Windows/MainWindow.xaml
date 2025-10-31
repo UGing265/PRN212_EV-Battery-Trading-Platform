@@ -7,7 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="#f9f9f9">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="{Binding WelcomeMessage}"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#0078D7"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
 
+            <Button Content="Đăng xuất"
+                    Width="120" Height="35"
+                    Command="{Binding LogoutCommand}"/>
+        </StackPanel>
     </Grid>
 </Window>

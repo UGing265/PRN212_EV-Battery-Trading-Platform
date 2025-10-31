@@ -1,0 +1,31 @@
+name: Build & Test EVBattery
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  build:
+    runs-on: windows-latest  # vì bạn có WPF app
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'   # tùy framework bạn dùng
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run tests (if any)
+        run: dotnet test --no-restore --verbosity normal
+
+      - name: Report success
+        run: echo " Build & tests passed successfully!"

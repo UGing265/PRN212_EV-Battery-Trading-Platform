@@ -29,5 +29,12 @@ namespace EVBattery.UI.WPF.Windows
             if (DataContext is LoginViewModel vm)
                 vm.Password = ((PasswordBox)sender).Password;
         }
+
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            var registerWindow = new RegisterWindow();
+            registerWindow.Show();
+            this.Close();
+        }
     }
 }
