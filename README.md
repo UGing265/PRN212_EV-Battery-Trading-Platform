@@ -1,5 +1,7 @@
 # ⚡ EVBattery Trading Platform – WPF + NestJS + PayOS
 
+[![Build & Test EVBattery](https://github.com/UGing265/PRN212_EV-Battery-Trading-Platform/actions/workflows/ci.yml/badge.svg?branch=dev)](https://github.com/UGing265/PRN212_EV-Battery-Trading-Platform/actions/workflows/ci.yml)
+
 > 🚗 **EVBattery** là nền tảng mua bán và quản lý pin & xe điện 2nd-hand.
 > Dự án gồm hai phần chính:
 >
