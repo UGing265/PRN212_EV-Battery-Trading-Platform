@@ -5004,23 +5004,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\HP\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HK5\\PRN212\\PRN212_Group\\DAL\\DAL.csproj",
+      "projectUniqueName": "D:\\AShiroru\\LessonFPT\\semester 5\\PRN212\\lesson\\PRN212_EV-Battery-Trading-Platform\\PRN212_EV-Battery-Trading-Platform\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "D:\\HK5\\PRN212\\PRN212_Group\\DAL\\DAL.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\HK5\\PRN212\\PRN212_Group\\DAL\\obj\\",
+      "projectPath": "D:\\AShiroru\\LessonFPT\\semester 5\\PRN212\\lesson\\PRN212_EV-Battery-Trading-Platform\\PRN212_EV-Battery-Trading-Platform\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "D:\\AShiroru\\LessonFPT\\semester 5\\PRN212\\lesson\\PRN212_EV-Battery-Trading-Platform\\PRN212_EV-Battery-Trading-Platform\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5094,7 +5094,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
